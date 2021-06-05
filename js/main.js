@@ -4,6 +4,9 @@
   const addBtn = document.getElementById('btn');
   const newTask = document.getElementById('newtask');
   const taskList = document.getElementById('tasklist');
+  const radioAllBtn = document.getElementById('radioallbtn')
+  const radioWorkBtn = document.getElementById('radioworkbtn')
+  const radioDoneBtn = document.getElementById('radiodonebtn')
   const todos = [];
 
   const createStatusBtn = (task) => {
@@ -28,7 +31,7 @@
       displayTodos(todos);
     });
   };
-
+  
   const displayTodos = (array) => {
     taskList.innerText = '';
     array.forEach((el, index) => {
@@ -45,6 +48,24 @@
     });
   };
   
+  radioAllBtn.addEventListener('click', () => {
+      displayTodos(todos);
+    });
+    
+  radioWorkBtn.addEventListener('click', () => {
+      const workTodos = todos.filter(todo => {
+        todo.status === '作業中'
+      })
+      displayTodos(workTodos)
+    });
+
+  radioDoneBtn.addEventListener('click', () => {
+      const doneTodos = todos.filter(todo => {
+        todo.status === '完了'
+      })
+      displayTodos(doneTodos);
+    });
+
   addBtn.addEventListener('click', () => {
     const todo = {
       task: newTask.value,
