@@ -9,15 +9,17 @@
   const radioDoneBtn = document.getElementById('radiodonebtn')
   const todos = [];
 
-  const createStatusBtn = (task) => {
+  const createStatusBtn = (task, el) => {
     const statusBtn = document.createElement('button');
     statusBtn.textContent = '作業中';
     task.appendChild(statusBtn);
     statusBtn.addEventListener('click', () => {
       if (statusBtn.textContent === '作業中') {
         statusBtn.textContent = '完了';
+        el.status = '完了'
       } else {
         statusBtn.textContent ='作業中';
+        el.status = '作業中'
       }
     });
   };
@@ -43,26 +45,26 @@
       taskComment.textContent = el.task;
       task.appendChild(taskId);
       task.appendChild(taskComment);
-      createStatusBtn(task);
+      createStatusBtn(task, el);
       createDeleteBtn(task, index);
     });
   };
-  
+
   radioAllBtn.addEventListener('click', () => {
       displayTodos(todos);
     });
     
   radioWorkBtn.addEventListener('click', () => {
-      const workTodos = todos.filter(todo => {
+      const workTodos = todos.filter(todo => 
         todo.status === '作業中'
-      })
+      )
       displayTodos(workTodos)
     });
 
   radioDoneBtn.addEventListener('click', () => {
-      const doneTodos = todos.filter(todo => {
+      const doneTodos = todos.filter(todo => 
         todo.status === '完了'
-      })
+      )
       displayTodos(doneTodos);
     });
 
