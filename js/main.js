@@ -8,10 +8,11 @@
   const radioWorkBtn = document.getElementById('radioworkbtn')
   const radioDoneBtn = document.getElementById('radiodonebtn')
   const todos = [];
+  let id = 0;
 
   const createStatusBtn = (task, el) => {
     const statusBtn = document.createElement('button');
-    statusBtn.textContent = '作業中';
+    statusBtn.textContent = el.status;
     task.appendChild(statusBtn);
     statusBtn.addEventListener('click', () => {
       if (statusBtn.textContent === '作業中') {
@@ -41,7 +42,7 @@
       taskList.appendChild(task);
       const taskId = document.createElement('td');
       const taskComment = document.createElement('td');
-      taskId.textContent = index;
+      taskId.textContent = id++;
       taskComment.textContent = el.task;
       task.appendChild(taskId);
       task.appendChild(taskComment);
