@@ -49,6 +49,7 @@
       createStatusBtn(task, el);
       createDeleteBtn(task, index);
     });
+    id = 0;
   };
 
   radioAllBtn.addEventListener('click', () => {
