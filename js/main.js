@@ -60,7 +60,7 @@
       const workTodos = todos.filter(todo => 
         todo.status === '作業中'
       )
-      displayTodos(workTodos)
+      displayTodos(workTodos);
     });
 
   radioDoneBtn.addEventListener('click', () => {
@@ -75,6 +75,9 @@
       task: newTask.value,
       status: '作業中'
     };
+    todos.forEach((todo,index) => {
+      todo.id = index + 1;
+    });
     todos.push(todo);
     displayTodos(todos);
     newTask.value = '';
