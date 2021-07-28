@@ -40,6 +40,11 @@
     array.forEach((el, index) => {
       const task = document.createElement('tr');
       taskList.appendChild(task);
+      if (statusBtn.textContent === '作業中') {
+        task.classList.add('work');
+        } else {
+        task.classList.add('finish');
+        }
       const taskId = document.createElement('td');
       const taskComment = document.createElement('td');
       taskId.textContent = id++;
