@@ -18,6 +18,7 @@
       if (statusBtn.textContent === '作業中') {
         statusBtn.textContent = '完了';
         el.status = '完了'
+        task.classList.add('finish');
       } else {
         statusBtn.textContent ='作業中';
         el.status = '作業中'
@@ -40,11 +41,6 @@
     array.forEach((el, index) => {
       const task = document.createElement('tr');
       taskList.appendChild(task);
-      if (statusBtn.textContent === '作業中') {
-        task.classList.add('work');
-        } else {
-        task.classList.add('finish');
-        }
       const taskId = document.createElement('td');
       const taskComment = document.createElement('td');
       taskId.textContent = id++;
@@ -62,18 +58,12 @@
     });
     
   radioWorkBtn.addEventListener('click', () => {
-      const workTodos = todos.filter(todo => 
-        todo.status === '作業中'
-      )
-      displayTodos(workTodos);
-    });
+
+  });
 
   radioDoneBtn.addEventListener('click', () => {
-      const doneTodos = todos.filter(todo => 
-        todo.status === '完了'
-      )
-      displayTodos(doneTodos);
-    });
+    
+  });
 
   addBtn.addEventListener('click', () => {
     const todo = {
