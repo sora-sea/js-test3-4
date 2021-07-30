@@ -4,9 +4,10 @@
   const addBtn = document.getElementById('btn');
   const newTask = document.getElementById('newtask');
   const taskList = document.getElementById('tasklist');
-  const radioAllBtn = document.getElementById('radioallbtn')
-  const radioWorkBtn = document.getElementById('radioworkbtn')
-  const radioDoneBtn = document.getElementById('radiodonebtn')
+  const radioAllBtn = document.getElementById('radioallbtn');
+  const radioWorkBtn = document.getElementById('radioworkbtn');
+  const radioDoneBtn = document.getElementById('radiodonebtn');
+  const option = document.getElementsByName('status');
   const todos = [];
   let id = 0;
 
@@ -19,9 +20,12 @@
         statusBtn.textContent = '完了';
         el.status = '完了'
         task.classList.add('finish');
+        task.classList.remove('work');
       } else {
         statusBtn.textContent ='作業中';
         el.status = '作業中'
+        task.classList.add('work');
+        task.classList.remove('finish');
       }
     });
   };
@@ -53,16 +57,43 @@
     id = 0;
   };
 
+  const checkOption = () => {
+    const workTask = document.querySelectorAll('.work');
+    const doneTask = document.querySelectorAll('.finish');
+    if (option[1].checked) {
+      workTask.forEach(element => {
+        element.style.display = '';
+      });
+      doneTask.forEach(element => {
+        element.style.display = 'none';
+      });
+    } else if (option[2].checked) {
+      workTask.forEach(element => {
+        element.style.display = 'none';
+      });
+      doneTask.forEach(element => {
+        element.style.display = '';
+      });
+    } else {
+      workTask.forEach(element => {
+        element.style.display = '';
+      });
+      doneTask.forEach(element => {
+        element.style.display = '';
+      });
+    }
+  }
+
   radioAllBtn.addEventListener('click', () => {
       displayTodos(todos);
     });
     
   radioWorkBtn.addEventListener('click', () => {
-
+    checkOption();
   });
 
   radioDoneBtn.addEventListener('click', () => {
-    
+    checkOption();
   });
 
   addBtn.addEventListener('click', () => {
