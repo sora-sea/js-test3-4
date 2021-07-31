@@ -14,16 +14,23 @@
   const createStatusBtn = (task, el) => {
     const statusBtn = document.createElement('button');
     statusBtn.textContent = el.status;
+    if (statusBtn.textContent === '作業中') {
+      task.classList.add('work');
+      task.classList.remove('finish');
+    } else {
+      task.classList.add('finish');
+      task.classList.remove('work');
+    }
     task.appendChild(statusBtn);
     statusBtn.addEventListener('click', () => {
       if (statusBtn.textContent === '作業中') {
         statusBtn.textContent = '完了';
-        el.status = '完了'
+        el.status = '完了';
         task.classList.add('finish');
         task.classList.remove('work');
       } else {
         statusBtn.textContent ='作業中';
-        el.status = '作業中'
+        el.status = '作業中';
         task.classList.add('work');
         task.classList.remove('finish');
       }
@@ -89,10 +96,12 @@
     });
     
   radioWorkBtn.addEventListener('click', () => {
+    displayTodos(todos);
     checkOption();
   });
-
+  
   radioDoneBtn.addEventListener('click', () => {
+    displayTodos(todos);
     checkOption();
   });
 
