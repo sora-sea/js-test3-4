@@ -28,11 +28,13 @@
         el.status = '完了';
         task.classList.add('finish');
         task.classList.remove('work');
+        displayTodos(todos);
       } else {
         statusBtn.textContent ='作業中';
         el.status = '作業中';
         task.classList.add('work');
         task.classList.remove('finish');
+        displayTodos(todos);
       }
     });
   };
@@ -43,7 +45,7 @@
     task.appendChild(deleteBtn);
     deleteBtn.addEventListener('click', () => {
       todos.splice(index, 1);
-      displayTodos(todos);
+      checkOption(todos);
     });
   };
   
@@ -89,6 +91,7 @@
         element.style.display = '';
       });
     }
+    displayTodos(todos);
   }
 
   radioAllBtn.addEventListener('click', () => {
@@ -96,12 +99,10 @@
     });
     
   radioWorkBtn.addEventListener('click', () => {
-    displayTodos(todos);
     checkOption();
   });
   
   radioDoneBtn.addEventListener('click', () => {
-    displayTodos(todos);
     checkOption();
   });
 
@@ -114,7 +115,7 @@
       todo.id = index + 1;
     });
     todos.push(todo);
-    displayTodos(todos);
+    checkOption(todos);
     newTask.value = '';
   });
 }
