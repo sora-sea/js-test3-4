@@ -45,7 +45,7 @@
     task.appendChild(deleteBtn);
     deleteBtn.addEventListener('click', () => {
       todos.splice(index, 1);
-      checkOption(todos);
+      displayTodos(todos);
     });
   };
   
@@ -64,6 +64,7 @@
       createDeleteBtn(task, index);
     });
     id = 0;
+    checkOption();
   };
 
   const checkOption = () => {
@@ -91,7 +92,6 @@
         element.style.display = '';
       });
     }
-    displayTodos(todos);
   }
 
   radioAllBtn.addEventListener('click', () => {
@@ -99,11 +99,11 @@
     });
     
   radioWorkBtn.addEventListener('click', () => {
-    checkOption();
+    displayTodos(todos);
   });
   
   radioDoneBtn.addEventListener('click', () => {
-    checkOption();
+    displayTodos(todos);
   });
 
   addBtn.addEventListener('click', () => {
@@ -115,7 +115,7 @@
       todo.id = index + 1;
     });
     todos.push(todo);
-    checkOption(todos);
+    displayTodos(todos);
     newTask.value = '';
   });
 }
